@@ -1,0 +1,138 @@
+id,ibge_id,nome,codigo_uf
+1,2,Leste Rondoniense,11
+2,1,Madeira-Guaporé,11
+3,2,Vale do Acre,12
+4,1,Vale do Juruá,12
+5,3,Centro Amazonense,13
+6,2,Sudoeste Amazonense,13
+7,4,Sul Amazonense,13
+8,1,Norte Amazonense,13
+9,1,Norte de Roraima,14
+10,2,Sul de Roraima,14
+11,4,Nordeste Paraense,15
+12,6,Sudeste Paraense,15
+13,2,Marajó,15
+14,1,Baixo Amazonas,15
+15,5,Sudoeste Paraense,15
+16,3,Metropolitana de Belém,15
+17,1,Norte do Amapá,16
+18,2,Sul do Amapá,16
+19,1,Ocidental do Tocantins,17
+20,2,Oriental do Tocantins,17
+21,2,Oeste Maranhense,21
+22,4,Leste Maranhense,21
+23,1,Norte Maranhense,21
+24,5,Sul Maranhense,21
+25,3,Centro Maranhense,21
+26,4,Sudeste Piauiense,22
+27,2,Centro-Norte Piauiense,22
+28,3,Sudoeste Piauiense,22
+29,1,Norte Piauiense,22
+30,7,Sul Cearense,23
+31,2,Norte Cearense,23
+32,1,Noroeste Cearense,23
+33,4,Sertões Cearenses,23
+34,5,Jaguaribe,23
+35,6,Centro-Sul Cearense,23
+36,3,Metropolitana de Fortaleza,23
+37,2,Central Potiguar,24
+38,1,Oeste Potiguar,24
+39,4,Leste Potiguar,24
+40,3,Agreste Potiguar,24
+41,1,Sertão Paraibano,25
+42,3,Agreste Paraibano,25
+43,2,Borborema,25
+44,4,Mata Paraibana,25
+45,5,Metropolitana de Recife,26
+46,1,Sertão Pernambucano,26
+47,2,São Francisco Pernambucano,26
+48,3,Agreste Pernambucano,26
+49,4,Mata Pernambucana,26
+50,1,Sertão Alagoano,27
+51,3,Leste Alagoano,27
+52,2,Agreste Alagoano,27
+53,3,Leste Sergipano,28
+54,2,Agreste Sergipano,28
+55,1,Sertão Sergipano,28
+56,6,Centro Sul Baiano,29
+57,2,Vale São-Franciscano da Bahia,29
+58,4,Nordeste Baiano,29
+59,3,Centro Norte Baiano,29
+60,7,Sul Baiano,29
+61,5,Metropolitana de Salvador,29
+62,1,Extremo Oeste Baiano,29
+63,5,Triângulo Mineiro/Alto Paranaíba,31
+64,6,Central Mineira,31
+65,12,Zona da Mata,31
+66,8,Vale do Rio Doce,31
+67,9,Oeste de Minas,31
+68,4,Vale do Mucuri,31
+69,2,Norte de Minas,31
+70,10,Sul/Sudoeste de Minas,31
+71,11,Campo das Vertentes,31
+72,3,Jequitinhonha,31
+73,7,Metropolitana de Belo Horizonte,31
+74,1,Noroeste de Minas,31
+75,3,Central Espírito-santense,32
+76,1,Noroeste Espírito-santense,32
+77,4,Sul Espírito-santense,32
+78,2,Litoral Norte Espírito-santense,32
+79,5,Sul Fluminense,33
+80,1,Noroeste Fluminense,33
+81,4,Baixadas,33
+82,3,Centro Fluminense,33
+83,6,Metropolitana do Rio de Janeiro,33
+84,2,Norte Fluminense,33
+85,8,Presidente Prudente,35
+86,1,São José do Rio Preto,35
+87,7,Campinas,35
+88,4,Bauru,35
+89,6,Piracicaba,35
+90,11,Itapetininga,35
+91,2,Ribeirão Preto,35
+92,3,Araçatuba,35
+93,12,Macro Metropolitana Paulista,35
+94,9,Marília,35
+95,5,Araraquara,35
+96,13,Vale do Paraíba Paulista,35
+97,15,Metropolitana de São Paulo,35
+98,10,Assis,35
+99,14,Litoral Sul Paulista,35
+100,4,Norte Pioneiro Paranaense,41
+101,10,Metropolitana de Curitiba,41
+102,2,Centro Ocidental Paranaense,41
+103,1,Noroeste Paranaense,41
+104,3,Norte Central Paranaense,41
+105,7,Sudoeste Paranaense,41
+106,6,Oeste Paranaense,41
+107,9,Sudeste Paranaense,41
+108,5,Centro Oriental Paranaense,41
+109,8,Centro-Sul Paranaense,41
+110,3,Serrana,42
+111,1,Oeste Catarinense,42
+112,4,Vale do Itajaí,42
+113,5,Grande Florianópolis,42
+114,2,Norte Catarinense,42
+115,6,Sul Catarinense,42
+116,6,Sudoeste Rio-grandense,43
+117,1,Noroeste Rio-grandense,43
+118,3,Centro Ocidental Rio-grandense,43
+119,5,Metropolitana de Porto Alegre,43
+120,7,Sudeste Rio-grandense,43
+121,2,Nordeste Rio-grandense,43
+122,4,Centro Oriental Rio-grandense,43
+123,3,Leste de Mato Grosso do Sul,50
+124,2,Centro Norte de Mato Grosso do Sul,50
+125,4,Sudoeste de Mato Grosso do Sul,50
+126,1,Pantanais Sul Mato-grossense,50
+127,4,Centro-Sul Mato-grossense,51
+128,2,Nordeste Mato-grossense,51
+129,1,Norte Mato-grossense,51
+130,5,Sudeste Mato-grossense,51
+131,3,Sudoeste Mato-grossense,51
+132,3,Centro Goiano,52
+133,4,Leste Goiano,52
+134,5,Sul Goiano,52
+135,2,Norte Goiano,52
+136,1,Noroeste Goiano,52
+137,1,Distrito Federal,53
