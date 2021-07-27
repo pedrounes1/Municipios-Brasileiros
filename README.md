@@ -1,19 +1,25 @@
-# Municípios Brasileiros [![Build Status](https://travis-ci.org/kelvins/Municipios-Brasileiros.svg?branch=master)](https://travis-ci.org/kelvins/Municipios-Brasileiros)
+# Municípios Brasileiros [![Build Status](https://app.travis-ci.com/pedrounes1/Municipios-Brasileiros.svg?branch=main)](https://app.travis-ci.com/pedrounes1/Municipios-Brasileiros)
 
-Arquivos `SQL`, `CSV` e `JSON` contendo o código IBGE, nome do município, capital, código UF, UF, estado, latitude e longitude de todos (ou quase todos) os municípios brasileiros. Total de 5.570 registros.
+Arquivos `SQL`, `CSV` e `JSON` contendo o código IBGE, nome do município, capital, código UF, UF, estado, microrregião, mesorregião, latitude e longitude de todos (ou quase todos) os municípios brasileiros. Total de 5.570 registros.
+
+Esse repositório é um fork do trabalho incrível feito pelo [kelvins](https://github.com/kelvins/Municipios-Brasileiros). Eu tomei a liberdade de incluir microrregiões e mesorregiões, para atender as minhas necessidades específicas. Para isso, além de criar os arquivos de mesos e microrregiões, criei um chamado cidades, que faz os vínculos com as mesorregiões e microrregiões. Os arquivos (originais) de estados e municípios mantem a compatibilidade com o repositório do Kelvins.
+
+Os dados de microrregiões e mesorregiões estão disponíveis na tabela de Divisão Territorial Brasileira, acessível no [site do IBGE](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=acesso-ao-produto)
+
+Como o IBGE não possui um identificador único para microrregiões e mesorregiões, optei por criar um id próprio sequencial para cada micro/mesorregião. Os scripts de criação dos ids e processamento dos arquivos foi feito em python (3.8.5, pandas 1.1.3) e estão disponíveis em `scripts\tratativas.py`
 
 ## Exemplos
 
 ### Dados
 
-| Código IBGE |  Nome do Município  | Código UF | UF |       Estado      | Capital | Latitude | Longitude | Código Siafi | DDD |     Fuso Horário    |
-|:-----------:|:-------------------:|:---------:|:--:|:-----------------:|:-------:|:--------:|:---------:|:------------:|:---:|:-------------------:|
-|   5200050   | Abadia de Goiás     |     52    | GO | Goiás             |    0    | -16.7573 |  -49.4412 |     1050     |  62 | America/Sao_Paulo   |
-|   3100104   | Abadia dos Dourados |     31    | MG | Minas Gerais      |    0    | -18.4831 |  -47.3916 |     4001     |  34 | America/Sao_Paulo   |
-|   5200100   | Abadiânia           |     52    | GO | Goiás             |    0    | -16.1970 |  -48.7057 |     9201     |  62 | America/Sao_Paulo   |
-|   3100203   | Abaeté              |     31    | MG | Minas Gerais      |    0    | -19.1551 |  -45.4444 |     4003     |  37 | America/Sao_Paulo   |
-|   4314902   | Porto Alegre        |     43    | RS | Rio Grande do Sul |    1    | -30.0318 |  -51.2065 |     8801     |  51 | America/Sao_Paulo   |
-|   5106752   | Pontes e Lacerda    |     51    | MT | Mato Grosso       |    0    | -15.2219 |  -59.3435 |     8999     |  65 | America/Porto_Velho |
+| Código IBGE |  Nome do Município  | Código UF | UF |       Estado      | Capital | Latitude | Longitude | Código Siafi | DDD |     Fuso Horário    | Micro Id | Meso Id | 
+|:-----------:|:-------------------:|:---------:|:--:|:-----------------:|:-------:|:--------:|:---------:|:------------:|:---:|:-------------------:||:-------:|:-------:|
+|   5200050   | Abadia de Goiás     |     52    | GO | Goiás             |    0    | -16.7573 |  -49.4412 |     1050     |  62 | America/Sao_Paulo   |    540   |    132  |
+|   3100104   | Abadia dos Dourados |     31    | MG | Minas Gerais      |    0    | -18.4831 |  -47.3916 |     4001     |  34 | America/Sao_Paulo   |    253   |     63  |
+|   5200100   | Abadiânia           |     52    | GO | Goiás             |    0    | -16.1970 |  -48.7057 |     9201     |  62 | America/Sao_Paulo   |    541   |    133  |
+|   3100203   | Abaeté              |     31    | MG | Minas Gerais      |    0    | -19.1551 |  -45.4444 |     4003     |  37 | America/Sao_Paulo   |    254   |     64  |
+|   4314902   | Porto Alegre        |     43    | RS | Rio Grande do Sul |    1    | -30.0318 |  -51.2065 |     8801     |  51 | America/Sao_Paulo   |    482   |    119  |
+|   5106752   | Pontes e Lacerda    |     51    | MT | Mato Grosso       |    0    | -15.2219 |  -59.3435 |     8999     |  65 | America/Porto_Velho |    535   |    131  |
 
 ### Exemplo SQL
 
@@ -39,24 +45,29 @@ INSERT INTO estados VALUES
 #### Municípios
 
 ```sql
-CREATE TABLE municipios(
-    codigo_ibge INT NOT NULL,
-    nome VARCHAR(100) NOT NULL,
-    latitude FLOAT(8) NOT NULL,
-    longitude FLOAT(8) NOT NULL,
-    capital BOOLEAN NOT NULL,
-    codigo_uf INT NOT NULL,
-    siafi_id INT NOT NULL,
-    ddd INT NOT NULL,
-    fuso_horario VARCHAR(50),
-    PRIMARY KEY (codigo_ibge)
-    FOREIGN KEY (codigo_uf) REFERENCES estados (codigo_uf),
+CREATE TABLE cidades (
+  codigo_ibge INT NOT NULL,
+  nome VARCHAR(100) NOT NULL,
+  latitude FLOAT(8) NOT NULL,
+  longitude FLOAT(8) NOT NULL,
+  capital BOOLEAN NOT NULL,
+  codigo_uf INT NOT NULL,
+  siafi_id VARCHAR(4) NOT NULL UNIQUE,
+  ddd INT NOT NULL,
+  fuso_horario VARCHAR(32) NOT NULL,
+  meso_id INT NOT NULL,
+  micro_id INT NOT NULL,
+
+  PRIMARY KEY (codigo_ibge),
+  FOREIGN KEY (codigo_uf) REFERENCES estados (codigo_uf),
+  FOREIGN KEY (meso_id) REFERENCES mesorregioes (id),
+  FOREIGN KEY (micro_id) REFERENCES microrregioes (id)
 );
 
-INSERT INTO municipios VALUES
-(5200050,'Abadia de Goiás',-16.7573,-49.4412,FALSE,52,1050,62,'America/Sao_Paulo'),
-(3100104,'Abadia dos Dourados',-18.4831,-47.3916,FALSE,31,4001,34,'America/Sao_Paulo'),
-(5200100,'Abadiânia',-16.197,-48.7057,FALSE,52,9201,62,'America/Sao_Paulo'),
+INSERT INTO cidades VALUES
+(5200050, 'Abadia de Goiás', -16.7573, -49.4412, 0, 52, 132, 1050, 62, 'America\/Sao_Paulo', 132, 540),
+(3100104, 'Abadia dos Dourados', -18.4831, -47.3916, 0, 31, 63, 4001, 34, 'America\/Sao_Paulo', 63, 253),
+(5200100, 'Abadiânia', -16.197, -48.7057, 0, 52, 133, 9201, 62, 'America\/Sao_Paulo', 133, 541),
 
 ...
 ```
@@ -76,10 +87,10 @@ codigo_uf,uf,nome
 #### Municípios
 
 ```csv
-codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
-5200050,Abadia de Goiás,-16.7573,-49.4412,0,52,1050,62,America/Sao_Paulo
-3100104,Abadia dos Dourados,-18.4831,-47.3916,0,31,4001,34,America/Sao_Paulo
-5200100,Abadiânia,-16.197,-48.7057,0,52,9201,62,America/Sao_Paulo
+id,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario,micro_id,meso_id
+5200050,Abadia de Goiás,-16.7573,-49.4412,0,52,1050,62,America/Sao_Paulo,540,132
+3100104,Abadia dos Dourados,-18.4831,-47.3916,0,31,4001,34,America/Sao_Paulo,253,63
+5200100,Abadiânia,-16.197,-48.7057,0,52,9201,62,America/Sao_Paulo,541,133
 ...
 ```
 
@@ -118,7 +129,7 @@ codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
 ```json
 [
     {
-        "codigo_ibge": 5200050,
+        "id": 5200050,
         "nome": "Abadia de Goiás",
         "latitude": -16.7573,
         "longitude": -49.4412,
@@ -126,10 +137,12 @@ codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
         "codigo_uf": 52,
         "siafi_id": 1050,
         "ddd": 62,
-        "fuso_horario": "America\/Sao_Paulo"
+        "fuso_horario": "America\/Sao_Paulo",
+        "micro_id": 540,
+        "meso_id": 132
     },
     {
-        "codigo_ibge": 3100104,
+        "id": 3100104,
         "nome": "Abadia dos Dourados",
         "latitude": -18.4831,
         "longitude": -47.3916,
@@ -137,10 +150,12 @@ codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
         "codigo_uf": 31,
         "siafi_id": 4001,
         "ddd": 34,
-        "fuso_horario": "America\/Sao_Paulo"
+        "fuso_horario": "America\/Sao_Paulo",
+        "micro_id": 253,
+        "meso_id": 63
     },
     {
-        "codigo_ibge": 5200100,
+        "id": 5200100,
         "nome": "Abadiânia",
         "latitude": -16.197,
         "longitude": -48.7057,
@@ -148,12 +163,17 @@ codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
         "codigo_uf": 52,
         "siafi_id": 9201,
         "ddd": 62,
-        "fuso_horario": "America\/Sao_Paulo"
+        "fuso_horario": "America\/Sao_Paulo",
+        "micro_id": 541,
+        "meso_id": 133
     }
 ]
 ```
 
-**Nota**: caso encontre qualquer dado inconsistente ou tenha alguma sugestão por favor crie uma [issue](https://github.com/kelvins/Municipios-Brasileiros/issues) ou envie um [pull request](https://github.com/kelvins/Municipios-Brasileiros/pulls) diretamente. Obrigado a todos os [colaboradores](https://github.com/kelvins/Municipios-Brasileiros/graphs/contributors). :raised_hands:
+
+**Nota**: caso encontre qualquer dado inconsistente ou tenha alguma sugestão por favor crie uma [issue](https://github.com/pedrounes1/Municipios-Brasileiros/issues) ou envie um [pull request](https://github.com/pedrounes1/Municipios-Brasileiros/pulls) diretamente. 
+
+Obrigado a todos os [colaboradores](https://github.com/kelvins/Municipios-Brasileiros/graphs/contributors). :raised_hands:
 
 ## Exportação dos Dados
 
