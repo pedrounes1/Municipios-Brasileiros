@@ -13,7 +13,7 @@ Como o IBGE não possui um identificador único para microrregiões e mesorregi�
 ### Dados
 
 | Código IBGE |  Nome do Município  | Código UF | UF |       Estado      | Capital | Latitude | Longitude | Código Siafi | DDD |     Fuso Horário    | Micro Id | Meso Id | 
-|:-----------:|:-------------------:|:---------:|:--:|:-----------------:|:-------:|:--------:|:---------:|:------------:|:---:|:-------------------:||:-------:|:-------:|
+|:-----------:|:-------------------:|:---------:|:--:|:-----------------:|:-------:|:--------:|:---------:|:------------:|:---:|:-------------------:|:--------:|:-------:|
 |   5200050   | Abadia de Goiás     |     52    | GO | Goiás             |    0    | -16.7573 |  -49.4412 |     1050     |  62 | America/Sao_Paulo   |    540   |    132  |
 |   3100104   | Abadia dos Dourados |     31    | MG | Minas Gerais      |    0    | -18.4831 |  -47.3916 |     4001     |  34 | America/Sao_Paulo   |    253   |     63  |
 |   5200100   | Abadiânia           |     52    | GO | Goiás             |    0    | -16.1970 |  -48.7057 |     9201     |  62 | America/Sao_Paulo   |    541   |    133  |
