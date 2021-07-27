@@ -138,6 +138,9 @@ CREATE TABLE cidades (
 
 INSERT INTO cidades VALUES
 '''
+
+    cidades['capital'] = cidades['capital'].astype(bool)
+
     for i, cidade in enumerate(cidades.to_dict(orient='records')):
         cidade['fuso_horario'] = str(cidade['fuso_horario']).replace(r'/', r'\/')
         cidade['nome'] = cidade['nome'].replace("'", "''")

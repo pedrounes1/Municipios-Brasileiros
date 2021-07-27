@@ -6,7 +6,7 @@ Esse repositório é um fork do trabalho incrível feito pelo [kelvins](https://
 
 Os dados de microrregiões e mesorregiões estão disponíveis na tabela de Divisão Territorial Brasileira, acessível no [site do IBGE](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=acesso-ao-produto)
 
-Como o IBGE não possui um identificador único para microrregiões e mesorregiões, optei por criar um id próprio sequencial para cada micro/mesorregião. Os scripts de criação dos ids e processamento dos arquivos foi feito em python (3.8.5, pandas 1.1.3) e estão disponíveis em `scripts\tratativas.py`
+Como o IBGE não possui um identificador único para microrregiões e mesorregiões, optei por criar um id próprio sequencial para cada micro/mesorregião. Os scripts de criação dos ids e processamento dos arquivos foi feito em python e estão disponíveis em `scripts\tratativas.py`, junto com seu respectivo arquivo `requirements.txt`.
 
 ## Exemplos
 
@@ -65,10 +65,11 @@ CREATE TABLE cidades (
 );
 
 INSERT INTO cidades VALUES
-(5200050, 'Abadia de Goiás', -16.7573, -49.4412, 0, 52, 1050, 62, 'America\/Sao_Paulo', 132, 540),
-(3100104, 'Abadia dos Dourados', -18.4831, -47.3916, 0, 31, 4001, 34, 'America\/Sao_Paulo', 63, 253),
-(5200100, 'Abadiânia', -16.197, -48.7057, 0, 52, 9201, 62, 'America\/Sao_Paulo', 133, 541),
-(3100203, 'Abaeté', -19.1551, -45.4444, 0, 31, 4003, 37, 'America\/Sao_Paulo', 64, 254)
+(5200050, 'Abadia de Goiás', -16.7573, -49.4412, FALSE, 52, '1050', 62, 'America\/Sao_Paulo', 132, 540),
+(3100104, 'Abadia dos Dourados', -18.4831, -47.3916, FALSE, 31, '4001', 34, 'America\/Sao_Paulo', 63, 253),
+(5200100, 'Abadiânia', -16.197, -48.7057, FALSE, 52, '9201', 62, 'America\/Sao_Paulo', 133, 541),
+(3100203, 'Abaeté', -19.1551, -45.4444, FALSE, 31, '4003', 37, 'America\/Sao_Paulo', 64, 254),
+(1500107, 'Abaetetuba', -1.72183, -48.8788, FALSE, 15, '0401', 91, 'America\/Sao_Paulo', 11, 31)
 ...
 ```
 
