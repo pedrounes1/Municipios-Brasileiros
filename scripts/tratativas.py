@@ -54,14 +54,14 @@ def trataDados():
 
     # Exporta os dados:
     # CSV
-    mesos.to_csv(p('csv/Mesorregiões.csv'), index=False)
-    micros.to_csv(p('csv/Microrregiões.csv'), index=False)
-    cidades.to_csv(p('csv/Cidades.csv'), index=False)
+    mesos.to_csv(p('csv/mesorregioes.csv'), index=False)
+    micros.to_csv(p('csv/microrregioes.csv'), index=False)
+    cidades.to_csv(p('csv/cidades.csv'), index=False)
 
     # JSON
-    mesos.to_json(p('json/Mesorregiões.json'), orient="records", force_ascii=False)
-    micros.to_json(p('json/Microrregiões.json'), orient="records", force_ascii=False)
-    cidades.to_json(p('json/Cidades.json'), orient="records", force_ascii=False)
+    mesos.to_json(p('json/mesorregioes.json'), orient="records", force_ascii=False)
+    micros.to_json(p('json/microrregioes.json'), orient="records", force_ascii=False)
+    cidades.to_json(p('json/cidades.json'), orient="records", force_ascii=False)
 
     # SQL
     meso_sql = '''
@@ -100,8 +100,8 @@ CREATE TABLE microrregioes(
   PRIMARY KEY (id),
   FOREIGN KEY (codigo_uf) REFERENCES estados (codigo_uf),
   FOREIGN KEY (meso_id) REFERENCES mesorregioes (id),
-  CONSTRAINT microId_UF UNIQUE (ibge_id, codigo_uf),
-)
+  CONSTRAINT microId_UF UNIQUE (ibge_id, codigo_uf)
+);
 
 INSERT INTO microrregioes VALUES
 '''
@@ -141,13 +141,13 @@ INSERT INTO cidades VALUES
     for i, cidade in enumerate(cidades.to_dict(orient='records')):
         cidade['fuso_horario'] = str(cidade['fuso_horario']).replace(r'/', r'\/')
         cidade['nome'] = cidade['nome'].replace("'", "''")
-        cidade_sql += f"({cidade['id']}, '{cidade['nome']}', {cidade['latitude']}, {cidade['longitude']}, {str(cidade['capital']).upper()}, {cidade['codigo_uf']}, {cidade['meso_id']}, {cidade['siafi_id']}, {cidade['ddd']}, '{cidade['fuso_horario']}', {cidade['meso_id']}, {cidade['micro_id']})"
+        cidade_sql += f"({cidade['id']}, '{cidade['nome']}', {cidade['latitude']}, {cidade['longitude']}, {str(cidade['capital']).upper()}, {cidade['codigo_uf']}, {cidade['siafi_id']}, {cidade['ddd']}, '{cidade['fuso_horario']}', {cidade['meso_id']}, {cidade['micro_id']})"
         cidade_sql += ';' if i == len(cidades) - 1 else ',\n'
 
     with open(p('sql/cidades.sql'), 'w', encoding='utf-8') as file:
         file.write(cidade_sql)
 
-    print("salvo!")
+    print("Arquivos processados com sucesso!")
 
 
 if __name__ == "__main__":
