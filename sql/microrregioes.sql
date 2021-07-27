@@ -11,7 +11,7 @@ CREATE TABLE microrregioes(
   PRIMARY KEY (id),
   FOREIGN KEY (codigo_uf) REFERENCES estados (codigo_uf),
   FOREIGN KEY (meso_id) REFERENCES mesorregioes (id),
-  CONSTRAINT microId_UF UNIQUE (ibge_id, codigo_uf),
+  CONSTRAINT microId_UF UNIQUE (ibge_id, codigo_uf)
 );
 
 INSERT INTO microrregioes VALUES
