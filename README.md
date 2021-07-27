@@ -12,7 +12,7 @@ Como o IBGE não possui um identificador único para microrregiões e mesorregi�
 
 ### Dados
 
-| Código IBGE |  Nome do Município  | Código UF | UF |       Estado      | Capital | Latitude | Longitude | Código Siafi | DDD |     Fuso Horário    | Micro Id | Meso Id | 
+| Código IBGE |  Nome do Município  | Código UF | UF |       Estado      | Capital | Latitude | Longitude | Código Siafi | DDD |     Fuso Horário    | Micro Id | Meso Id |
 |:-----------:|:-------------------:|:---------:|:--:|:-----------------:|:-------:|:--------:|:---------:|:------------:|:---:|:-------------------:|:--------:|:-------:|
 |   5200050   | Abadia de Goiás     |     52    | GO | Goiás             |    0    | -16.7573 |  -49.4412 |     1050     |  62 | America/Sao_Paulo   |    540   |    132  |
 |   3100104   | Abadia dos Dourados |     31    | MG | Minas Gerais      |    0    | -18.4831 |  -47.3916 |     4001     |  34 | America/Sao_Paulo   |    253   |     63  |
@@ -65,10 +65,10 @@ CREATE TABLE cidades (
 );
 
 INSERT INTO cidades VALUES
-(5200050, 'Abadia de Goiás', -16.7573, -49.4412, 0, 52, 132, 1050, 62, 'America\/Sao_Paulo', 132, 540),
-(3100104, 'Abadia dos Dourados', -18.4831, -47.3916, 0, 31, 63, 4001, 34, 'America\/Sao_Paulo', 63, 253),
-(5200100, 'Abadiânia', -16.197, -48.7057, 0, 52, 133, 9201, 62, 'America\/Sao_Paulo', 133, 541),
-
+(5200050, 'Abadia de Goiás', -16.7573, -49.4412, 0, 52, 1050, 62, 'America\/Sao_Paulo', 132, 540),
+(3100104, 'Abadia dos Dourados', -18.4831, -47.3916, 0, 31, 4001, 34, 'America\/Sao_Paulo', 63, 253),
+(5200100, 'Abadiânia', -16.197, -48.7057, 0, 52, 9201, 62, 'America\/Sao_Paulo', 133, 541),
+(3100203, 'Abaeté', -19.1551, -45.4444, 0, 31, 4003, 37, 'America\/Sao_Paulo', 64, 254)
 ...
 ```
 
@@ -171,7 +171,7 @@ id,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario,micro_id,
 ```
 
 
-**Nota**: caso encontre qualquer dado inconsistente ou tenha alguma sugestão por favor crie uma [issue](https://github.com/pedrounes1/Municipios-Brasileiros/issues) ou envie um [pull request](https://github.com/pedrounes1/Municipios-Brasileiros/pulls) diretamente. 
+**Nota**: caso encontre qualquer dado inconsistente ou tenha alguma sugestão por favor crie uma [issue](https://github.com/pedrounes1/Municipios-Brasileiros/issues) ou envie um [pull request](https://github.com/pedrounes1/Municipios-Brasileiros/pulls) diretamente.
 
 Obrigado a todos os [colaboradores](https://github.com/kelvins/Municipios-Brasileiros/graphs/contributors). :raised_hands:
 
