@@ -141,7 +141,7 @@ INSERT INTO cidades VALUES
     for i, cidade in enumerate(cidades.to_dict(orient='records')):
         cidade['fuso_horario'] = str(cidade['fuso_horario']).replace(r'/', r'\/')
         cidade['nome'] = cidade['nome'].replace("'", "''")
-        cidade_sql += f"({cidade['id']}, '{cidade['nome']}', {cidade['latitude']}, {cidade['longitude']}, {str(cidade['capital']).upper()}, {cidade['codigo_uf']}, {cidade['siafi_id']}, {cidade['ddd']}, '{cidade['fuso_horario']}', {cidade['meso_id']}, {cidade['micro_id']})"
+        cidade_sql += f"({cidade['id']}, '{cidade['nome']}', {cidade['latitude']}, {cidade['longitude']}, {str(cidade['capital']).upper()}, {cidade['codigo_uf']}, '{str(cidade['siafi_id']).zfill(4)}', {cidade['ddd']}, '{cidade['fuso_horario']}', {cidade['meso_id']}, {cidade['micro_id']})"
         cidade_sql += ';' if i == len(cidades) - 1 else ',\n'
 
     with open(p('sql/cidades.sql'), 'w', encoding='utf-8') as file:
